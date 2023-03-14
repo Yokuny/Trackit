@@ -1,11 +1,26 @@
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+const objTemplate = (email, password) => ({ email, password });
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
     <>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          let a = objTemplate(email, password);
+          axios
+            .post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", a)
+            .then((res) => {
+              console.log(res);
+              //render para outra pagina
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }}>
         <input
           type="email"
           onChange={({ target }) => {
