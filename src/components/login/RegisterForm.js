@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [picture, setPicture] = useState("");
+  const page = useNavigate();
   const objTemplate = (email, password, name, picture) => ({ email, name, image: picture, password });
   return (
     <>
@@ -13,16 +14,10 @@ const RegisterForm = () => {
         onSubmit={(e) => {
           e.preventDefault();
           let a = objTemplate(email, password, name, picture);
-          console.log(a);
           axios
             .post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", a)
-            .then((res) => {
-              console.log(res);
-              //render para outra pagina
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+            .then((res) => page("/"))
+            .catch((err) => alert("Erro ao cadastrar"));
         }}>
         <input
           type="email"
