@@ -1,12 +1,71 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 const RegisterForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [picture, setPicture] = useState("");
   return (
     <>
       <form>
-        <input type="email" placeholder="email" />
-        <input type="password" placeholder="senha" />
-        <input type="text" placeholder="nome" />
-        <input type="text" placeholder="foto" />
+        <input
+          type="email"
+          onChange={({ target }) => {
+            if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(target.value)) {
+              target.style = "border-bottom: 2px solid #52b6ff";
+              setEmail(target.value);
+            } else {
+              target.style = "border-bottom: 2px solid crimson";
+            }
+          }}
+          placeholder="email"
+          required
+          minLength={8}
+        />
+        <input
+          type="password"
+          onChange={({ target }) => {
+            if (target.value.length > 5) {
+              target.style = "border-bottom: 2px solid #52b6ff";
+              setPassword(target.value);
+            } else {
+              target.style = "border-bottom: 2px solid crimson";
+            }
+          }}
+          placeholder="senha"
+          required
+          minLength={6}
+        />
+        <input
+          type="text"
+          onChange={({ target }) => {
+            if (target.value.length > 3) {
+              target.style = "border-bottom: 2px solid #52b6ff";
+              setName(target.value);
+            } else {
+              target.style = "border-bottom: 2px solid crimson";
+            }
+          }}
+          placeholder="nome"
+          required
+          minLength={4}
+        />
+
+        <input
+          type="url"
+          onInput={({ target }) => {
+            const picture = new Image();
+            picture.onerror = () => (target.style = "border-bottom: 2px solid crimson");
+            picture.onload = () => {
+              target.style = "border-bottom: 2px solid #52b6ff";
+              setPicture(target.value);
+            };
+            picture.src = target.value;
+          }}
+          placeholder="foto"
+          required
+        />
+
         <button type="submit">Cadastrar</button>
       </form>
       <Link to="/">
