@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const objTemplate = (email, password) => ({ email, password });
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const page = useNavigate();
   return (
     <>
       <form
@@ -13,13 +14,8 @@ const LoginForm = () => {
           let a = objTemplate(email, password);
           axios
             .post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", a)
-            .then((res) => {
-              console.log(res);
-              //render para outra pagina
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+            .then((res) => page("/home"))
+            .catch((err) => alert("Erro ao logar"));
         }}>
         <input
           type="email"
