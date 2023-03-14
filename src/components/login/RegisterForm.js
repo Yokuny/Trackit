@@ -7,7 +7,10 @@ const RegisterForm = () => {
   const [picture, setPicture] = useState("");
   return (
     <>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}>
         <input
           type="email"
           onChange={({ target }) => {
@@ -50,7 +53,6 @@ const RegisterForm = () => {
           required
           minLength={4}
         />
-
         <input
           type="url"
           onInput={({ target }) => {
@@ -65,7 +67,6 @@ const RegisterForm = () => {
           placeholder="foto"
           required
         />
-
         <button type="submit">Cadastrar</button>
       </form>
       <Link to="/">
