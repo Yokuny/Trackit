@@ -1,3 +1,4 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import logo from "../../assets/logo-completa.svg";
 import LoginLayout from "./LoginLayout";
 import LoginForm from "./LoginForm";
@@ -6,9 +7,12 @@ function Login() {
   return (
     <LoginLayout>
       <img src={logo} alt="full logo" />
-      <LoginForm />
-      <RegisterForm />
-      <p>Não tem uma conta? Cadastre-se!</p>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginForm />} />
+          <Route path="/cadastro" element={<RegisterForm />} />
+        </Routes>
+      </BrowserRouter>
     </LoginLayout>
   );
 }
