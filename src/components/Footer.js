@@ -1,8 +1,5 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Habits from "./habits/Habits.js";
-import Today from "./today/Today";
-import History from "./history/History.js";
 const FooterStyle = styled.footer`
   width: 375px;
   height: 70px;
