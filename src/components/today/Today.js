@@ -4,7 +4,6 @@ import Footer from "../Footer.js";
 import TaskCard from "./TaskCard.js";
 import axios from "axios";
 import dayjs from "dayjs";
-
 const FullScreen = styled.div`
   background-color: #e5e5e5;
   display: flex;
