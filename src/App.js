@@ -2,36 +2,35 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/login/Login";
 import LoginForm from "./components/login/LoginForm";
 import RegisterForm from "./components/login/RegisterForm";
+import Habits from "./components/habits/Habits.js";
 import Today from "./components/today/Today.js";
-import styled from "styled-components";
-const ScreenSize = styled.div`
-  width: 375px;
-`;
+import History from "./components/history/History.js";
 const App = () => {
   return (
-    <ScreenSize>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Login>
-                <LoginForm />
-              </Login>
-            }
-          />
-          <Route
-            path="/cadastro"
-            element={
-              <Login>
-                <RegisterForm />
-              </Login>
-            }
-          />
-          <Route path="/hoje" element={<Today />} />
-        </Routes>
-      </BrowserRouter>
-    </ScreenSize>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Login>
+              <LoginForm />
+            </Login>
+          }
+        />
+        <Route
+          path="/cadastro"
+          element={
+            <Login>
+              <RegisterForm />
+            </Login>
+          }
+        />
+        <Route path="/habitos" element={<Habits />} />
+        <Route path="/hoje" element={<Today />} />
+        <Route path="/historico" element={<History />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 export default App;
+

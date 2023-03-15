@@ -4,12 +4,6 @@ import Footer from "../Footer.js";
 import TaskCard from "./TaskCard.js";
 import axios from "axios";
 import dayjs from "dayjs";
-var updateLocale = require("dayjs/plugin/updateLocale");
-dayjs.extend(updateLocale);
-
-dayjs.updateLocale("pt", {
-  weekdays: ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
-});
 const FullScreen = styled.div`
   background-color: #e5e5e5;
   display: flex;
