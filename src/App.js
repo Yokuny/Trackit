@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./components/login/Login";
 import LoginForm from "./components/login/LoginForm";
 import RegisterForm from "./components/login/RegisterForm";
-import Login from "./components/login/Login";
-import Hoje from "./components/hoje/Hoje.js";
+import Today from "./components/today/Today.js";
 import styled from "styled-components";
 const ScreenSize = styled.div`
   width: 375px;
@@ -28,7 +28,7 @@ const App = () => {
               </Login>
             }
           />
-          <Route path="/hoje" element={<Hoje />} />
+          <Route path="/hoje" element={<Today />} />
         </Routes>
       </BrowserRouter>
     </ScreenSize>
