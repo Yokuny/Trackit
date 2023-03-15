@@ -3,6 +3,13 @@ import Header from "../Header.js";
 import Footer from "../Footer.js";
 import TaskCard from "./TaskCard.js";
 import axios from "axios";
+import dayjs from "dayjs";
+var updateLocale = require("dayjs/plugin/updateLocale");
+dayjs.extend(updateLocale);
+
+dayjs.updateLocale("pt", {
+  weekdays: ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
+});
 const FullScreen = styled.div`
   background-color: #e5e5e5;
   display: flex;
@@ -34,12 +41,34 @@ let a = {
     Authorization: `Bearer ${token}`,
   },
 };
+
+const week = () => {
+  switch (dayjs().get("day")) {
+    case 0:
+      return "Domingo";
+    case 1:
+      return "Segunda";
+    case 2:
+      return "Terça";
+    case 3:
+      return "Quarta";
+    case 4:
+      return "Quinta";
+    case 5:
+      return "Sexta";
+    case 6:
+      return "Sábado";
+    default:
+      return "Erro";
+  }
+};
+let semana = week();
 const Today = () => {
   axios
     .get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", a)
-    .then((response) => {
+    .then((res) => {
       alert("Deu certo");
-      console.log(response.data);
+      console.log(res);
     })
     .catch((error) => {
       console.log(error);
@@ -48,7 +77,9 @@ const Today = () => {
     <FullScreen>
       <Header />
       <TodayInfo>
-        <p>Segunda, 17/05</p>
+        <p>
+          {semana}, {dayjs().format("DD/MM")}
+        </p>
         <p>Nenhum hábito concluído ainda</p>
       </TodayInfo>
       <TaskCard />
