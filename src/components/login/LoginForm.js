@@ -14,7 +14,10 @@ const LoginForm = () => {
           let a = objTemplate(email, password);
           axios
             .post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", a)
-            .then((res) => page("/home"))
+            .then((res) => {
+              console.log(res.data);
+              page("/hoje");
+            })
             .catch((err) => alert("Erro ao logar"));
         }}>
         <input
