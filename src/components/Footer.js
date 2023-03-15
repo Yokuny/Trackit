@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Habits from "./habits/Habits.js";
+import Today from "./today/Today";
+import History from "./history/History.js";
 const FooterStyle = styled.footer`
   width: 375px;
   height: 70px;
@@ -29,9 +32,9 @@ const StyledLink = styled(Link)`
 const Footer = () => {
   return (
     <FooterStyle>
-      <StyledLink>Hábitos</StyledLink>
-      <StyledLink>Hoje</StyledLink>
-      <StyledLink>Histórico</StyledLink>
+      <StyledLink to="/habitos">Hábitos</StyledLink>
+      <StyledLink to="/hoje">Hoje</StyledLink>
+      <StyledLink to="/historico">Histórico</StyledLink>
     </FooterStyle>
   );
 };
