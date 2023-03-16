@@ -25,6 +25,7 @@ const LoginLayout = styled.div`
   form button {
     border: 0px solid transparent;
     background: #52b6ff;
+    font-family: "Lexend Deca", sans-serif;
     color: #fff;
     cursor: pointer;
   }

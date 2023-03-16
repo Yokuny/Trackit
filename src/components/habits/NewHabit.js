@@ -1,5 +1,5 @@
 import Weekdays from "./Weekdays.js";
-import AddNewHabit from "./Styles/AddNewHabit.js";
+import AddNewHabit from "./style/AddNewHabit.js";
 import { useState } from "react";
 const newWeek = () => {
   function selectfalse(day) {
@@ -8,15 +8,15 @@ const newWeek = () => {
   let week = ["D", "S", "T", "Q", "Q", "S", "S"];
   return week.map((day) => selectfalse(day));
 };
-const NewHabit = () => {
+const NewHabit = ({ close }) => {
   const [weekDay, setWeekDay] = useState(newWeek());
   return (
     <AddNewHabit>
       <input type="text" placeholder="nome do hábito" />
       <Weekdays days={weekDay} markDay={setWeekDay} />
       <section>
-        <p>Cancel</p>
-        <p>Salvar</p>
+        <p onClick={() => close((actual) => !actual)}>Cancel</p>
+        <button>Salvar</button>
       </section>
     </AddNewHabit>
   );

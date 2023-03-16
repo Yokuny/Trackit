@@ -24,7 +24,7 @@ const AddNewHabit = styled.div`
     display: flex;
     justify-content: end;
   }
-  section p:first-child {
+  section p {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,23 +36,23 @@ const AddNewHabit = styled.div`
     color: #52b6ff;
     cursor: pointer;
   }
-  section p:first-child:hover {
+  section p:hover {
     opacity: 0.7;
   }
-  section p:last-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  section button {
     width: 84px;
     height: 35px;
-    background: #52b6ff;
+    border: 0px solid transparent;
     border-radius: 5px;
+    background: #52b6ff;
+
+    font-family: "Lexend Deca", sans-serif;
     font-size: 16px;
     text-align: center;
     color: #ffffff;
     cursor: pointer;
   }
-  section p:last-child:hover {
+  section button:hover {
     opacity: 0.7;
   }
 `;
