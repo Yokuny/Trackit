@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const AddNewHabit = styled.div`
+const AddNewHabit = styled.form`
   width: 340px;
   height: 180px;
   padding: 16px;
