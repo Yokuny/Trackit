@@ -9,6 +9,7 @@ const FooterStyle = styled.footer`
 
   position: fixed;
   bottom: 0px;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
