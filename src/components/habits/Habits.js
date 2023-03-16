@@ -2,7 +2,7 @@ import ScreenSize from "../../ScreenSize.js";
 import Header from "../Header.js";
 import Footer from "../Footer.js";
 import NewHabit from "./NewHabit.js";
-import { AddHabit, AddHeader, HabitCards } from "./Styles/HabitCards.js";
+import { AddHabit, AddHeader, HabitCards } from "./style/HabitCards.js";
 const Habits = () => {
   return (
     <ScreenSize>

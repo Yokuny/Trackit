@@ -1,4 +1,4 @@
-import { CheckboxContainer, Checkbox } from "./Styles/WeekDaysStyle";
+import { CheckboxContainer, Checkbox } from "./style/WeekDays";
 const Weekdays = ({ days, markDay }) => {
   return (
     <CheckboxContainer>

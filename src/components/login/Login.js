@@ -1,4 +1,4 @@
-import LoginLayout from "./LoginLayout";
+import LoginLayout from "./style/LoginLayout";
 import logo from "../../assets/logo-completa.svg";
 const Login = ({ children }) => {
   return (

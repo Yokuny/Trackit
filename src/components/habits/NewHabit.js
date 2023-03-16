@@ -1,5 +1,5 @@
 import Weekdays from "./Weekdays.js";
-import AddNewHabit from "./Styles/AddNewHabit.js";
+import AddNewHabit from "./style/AddNewHabit.js";
 import { useState } from "react";
 const newWeek = () => {
   function selectfalse(day) {
