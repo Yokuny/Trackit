@@ -4,6 +4,7 @@ const TaskListStyle = styled.div`
   width: 340px;
   height: 91px;
   padding: 16px;
+  margin-bottom: 10px;
   box-sizing: border-box;
   border-radius: 5px;
   background: #ffffff;

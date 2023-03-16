@@ -42,7 +42,7 @@ table {
 // a layout to center components in the middle of the page
 body {
 	line-height: 1;
-    width: 100vw;
+    width: auto;
     height: 100vh;
 
     display: flex;
