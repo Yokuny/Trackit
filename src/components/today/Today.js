@@ -5,6 +5,7 @@ import Footer from "../Footer.js";
 import TaskCard from "./TaskCard.js";
 import axios from "axios";
 import dayjs from "dayjs";
+import { useState, useEffect } from "react";
 
 const TodayInfo = styled.div`
   margin-bottom: 28px;
@@ -14,11 +15,11 @@ const TodayInfo = styled.div`
     line-height: 29px;
     color: #126ba5;
   }
-  p:last-child {
-    font-size: 18px;
-    line-height: 22px;
-    color: #bababa;
-  }
+`;
+const PStyled = styled.p`
+  font-size: 18px;
+  line-height: 22px;
+  color: ${({ color }) => (color ? color : "#bababa")};
 `;
 let token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE5OSwiaWF0IjoxNjc4OTY1MDM3fQ.d73JwvrK89Eyj2VLJfnzxF_YyrTItzwWVvqmpHAEp6k";
@@ -49,15 +50,25 @@ const week = () => {
 };
 let semana = week();
 const Today = () => {
-  axios
-    .get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", a)
-    .then((res) => {
-      alert("Deu certo");
-      console.log(res);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  const [tasks, setTasks] = useState([]);
+  const [done, setDone] = useState(0);
+  useEffect(() => {
+    axios
+      .get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", a)
+      .then((res) => {
+        let count = 0;
+        res.data.forEach((item) => {
+          if (item.done === true) {
+            count++;
+          }
+        });
+        setDone((count / res.data.length) * 100);
+        setTasks(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   return (
     <ScreenSize>
       <Header />
@@ -65,9 +76,16 @@ const Today = () => {
         <p>
           {semana}, {dayjs().format("DD/MM")}
         </p>
-        <p>Nenhum hábito concluído ainda</p>
+        {tasks.length === 0 || done === 0 ? (
+          <PStyled>Nenhum hábito concluído ainda</PStyled>
+        ) : (
+          <PStyled color="#8FC549">{done.toFixed(0)}% dos hábitos concluídos</PStyled>
+        )}
       </TodayInfo>
-      <TaskCard />
+      {tasks.map((task) => {
+        return <TaskCard key={task.id} task={task} />;
+      })}
+
       <Footer />
     </ScreenSize>
   );
