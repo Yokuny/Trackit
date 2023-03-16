@@ -1,9 +1,9 @@
+import { useState } from "react";
 import ScreenSize from "../../ScreenSize.js";
 import Header from "../Header.js";
 import Footer from "../Footer.js";
 import NewHabit from "./NewHabit.js";
 import { AddHabit, AddHeader, HabitCards } from "./style/HabitCards.js";
-import { useState } from "react";
 const Habits = () => {
   const [newHabit, setNewHabit] = useState(false);
   return (
