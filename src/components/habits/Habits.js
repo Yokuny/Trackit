@@ -1,15 +1,24 @@
-import styled from "styled-components";
+import ScreenSize from "../../ScreenSize.js";
 import Header from "../Header.js";
 import Footer from "../Footer.js";
-import axios from "axios";
-
+import NewHabit from "./NewHabit.js";
+import { AddHabit, AddHeader, HabitCards } from "./Styles/HabitCards.js";
 const Habits = () => {
   return (
-    <>
+    <ScreenSize>
       <Header />
-      <>a</>
+      <AddHabit>
+        <AddHeader>
+          <p>Meus hábitos</p>
+          <button>+</button>
+        </AddHeader>
+        <NewHabit />
+      </AddHabit>
+      <HabitCards>
+        <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+      </HabitCards>
       <Footer />
-    </>
+    </ScreenSize>
   );
 };
 export default Habits;

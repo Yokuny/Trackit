@@ -1,19 +1,11 @@
 import styled from "styled-components";
+import ScreenSize from "../../ScreenSize.js";
 import Header from "../Header.js";
 import Footer from "../Footer.js";
 import TaskCard from "./TaskCard.js";
 import axios from "axios";
 import dayjs from "dayjs";
-const FullScreen = styled.div`
-  background-color: #e5e5e5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  box-sizing: border-box;
-  padding-top: calc(28px + 70px);
-  padding-bottom: calc(70px + 10px);
-`;
+
 const TodayInfo = styled.div`
   margin-bottom: 28px;
   width: 340px;
@@ -35,7 +27,6 @@ let a = {
     Authorization: `Bearer ${token}`,
   },
 };
-
 const week = () => {
   switch (dayjs().get("day")) {
     case 0:
@@ -68,7 +59,7 @@ const Today = () => {
       console.log(error);
     });
   return (
-    <FullScreen>
+    <ScreenSize>
       <Header />
       <TodayInfo>
         <p>
@@ -78,7 +69,7 @@ const Today = () => {
       </TodayInfo>
       <TaskCard />
       <Footer />
-    </FullScreen>
+    </ScreenSize>
   );
 };
 export default Today;
