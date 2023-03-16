@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ScreenSize from "../../ScreenSize.js";
+import ScreenSize from "../ScreenSize.js";
 import Header from "../Header.js";
 import Footer from "../Footer.js";
 import NewHabit from "./NewHabit.js";
