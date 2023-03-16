@@ -18,6 +18,13 @@ const newHabit = (name, week) => {
   });
   return { name, days };
 };
+let token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE5OSwiaWF0IjoxNjc4OTY1MDM3fQ.d73JwvrK89Eyj2VLJfnzxF_YyrTItzwWVvqmpHAEp6k";
+let b = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
 const NewHabit = ({ close }) => {
   const [weekDay, setWeekDay] = useState(newWeek());
   const [task, setTask] = useState("");
@@ -27,8 +34,12 @@ const NewHabit = ({ close }) => {
         e.preventDefault();
         let a = newHabit(task, weekDay);
         axios
-          .post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", a)
-          .then((res) => alert("foi"))
+          .post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", a, b)
+          .then((res) => {
+            console.log(res);
+            alert("foi");
+            close((actual) => !actual);
+          })
           .catch((res) => alert("nao foi"));
       }}>
       <input
