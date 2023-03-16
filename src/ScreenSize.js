@@ -4,7 +4,7 @@ const ScreenSize = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   box-sizing: border-box;
   padding-top: calc(28px + 70px);
   padding-bottom: calc(70px + 10px);
