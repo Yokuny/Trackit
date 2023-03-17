@@ -27,7 +27,8 @@ const NewHabit = ({ close }) => {
             close((actual) => !actual);
           })
           .catch((res) => alert("nao foi"));
-      }}>
+      }}
+      data-test="habit-create-container">
       <input
         type="text"
         placeholder="nome do hábito"
@@ -40,11 +41,14 @@ const NewHabit = ({ close }) => {
           }
           setTask(target.value);
         }}
+        data-test="habit-name-input"
       />
       <Weekdays days={weekDay} markDay={setWeekDay} />
       <section>
-        <p onClick={() => close((actual) => !actual)}>Cancel</p>
-        <button>Salvar</button>
+        <p onClick={() => close((actual) => !actual)} data-test="habit-create-cancel-btn">
+          Cancel
+        </p>
+        <button data-test="habit-create-save-btn">Salvar</button>
       </section>
     </AddNewHabit>
   );

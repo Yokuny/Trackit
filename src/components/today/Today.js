@@ -22,10 +22,10 @@ const Today = () => {
     <ScreenSize>
       <Header />
       <TodayStyle>
-        <p>
+        <p data-test="today">
           {week()}, {day()}
         </p>
-        <p>Nenhum hábito concluído ainda</p>
+        <p data-test="today-counter">Nenhum hábito concluído ainda</p>
       </TodayStyle>
       {tasks.length > 0 && tasks.map((task) => <TaskCard key={task.id} task={task} />)}
       <Footer />

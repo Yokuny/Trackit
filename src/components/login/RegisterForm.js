@@ -31,6 +31,7 @@ const RegisterForm = () => {
           placeholder="email"
           required
           minLength={8}
+          data-test="email-input"
         />
         <input
           type="password"
@@ -45,6 +46,7 @@ const RegisterForm = () => {
           placeholder="senha"
           required
           minLength={6}
+          data-test="password-input"
         />
         <input
           type="text"
@@ -59,6 +61,7 @@ const RegisterForm = () => {
           placeholder="nome"
           required
           minLength={4}
+          data-test="user-name-input"
         />
         <input
           type="url"
@@ -73,11 +76,16 @@ const RegisterForm = () => {
           }}
           placeholder="foto"
           required
+          data-test="user-image-input"
         />
-        <button type="submit">Cadastrar</button>
+        <button type="submit" data-test="signup-btn">
+          Cadastrar
+        </button>
       </form>
       <Link to="/">
-        <p>Já tem uma conta? Faça login!</p>
+        <p atributo data-test="login-link">
+          Já tem uma conta? Faça login!
+        </p>
       </Link>
     </>
   );
