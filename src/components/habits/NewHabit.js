@@ -1,7 +1,8 @@
-import axios from "axios";
 import Weekdays from "./Weekdays.js";
 import AddNewHabit from "./style/AddNewHabit.js";
 import { useState } from "react";
+import { new_habit } from "../../scripts/body-structure.js";
+import { postHabit } from "../../scripts/request.js";
 const newWeek = () => {
   function selectfalse(day) {
     return { day, select: false };
@@ -9,22 +10,10 @@ const newWeek = () => {
   let week = ["D", "S", "T", "Q", "Q", "S", "S"];
   return week.map((day) => selectfalse(day));
 };
-const newHabit = (name, week) => {
-  let days = [];
-  week.forEach((day, index) => {
-    if (day.select === true) {
-      days.push(index);
-    }
-  });
-  return { name, days };
-};
+
 let token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE5OSwiaWF0IjoxNjc4OTY1MDM3fQ.d73JwvrK89Eyj2VLJfnzxF_YyrTItzwWVvqmpHAEp6k";
-let b = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-};
+
 const NewHabit = ({ close }) => {
   const [weekDay, setWeekDay] = useState(newWeek());
   const [task, setTask] = useState("");
@@ -32,11 +21,8 @@ const NewHabit = ({ close }) => {
     <AddNewHabit
       onSubmit={(e) => {
         e.preventDefault();
-        let a = newHabit(task, weekDay);
-        axios
-          .post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", a, b)
+        postHabit(new_habit(task, weekDay), token)
           .then((res) => {
-            console.log(res);
             alert("foi");
             close((actual) => !actual);
           })

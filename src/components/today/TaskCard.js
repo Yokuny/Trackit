@@ -1,45 +1,27 @@
-import styled from "styled-components";
+import { useState } from "react";
 import uncheck from "../../assets/uncheck.svg";
 import checked from "../../assets/checked.svg";
-import axios from "axios";
-const TaskCardStyle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 340px;
-  height: 94px;
-  padding: 13px;
-  box-sizing: border-box;
-  background: #ffffff;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  img {
-    cursor: pointer;
-    fill: #8fc549;
-  }
-  img:hover {
-    opacity: 0.7;
-  }
-`;
-const TaskCardInfo = styled.div`
-  color: #666666;
-  p:first-child {
-    font-size: 20px;
-    line-height: 25px;
-  }
-  p {
-    font-size: 13px;
-    line-height: 16px;
-  }
-`;
+import { TaskCardStyle, TaskCardInfo } from "./style/TaskCardStyle";
+import { accomplishTask, unaccomplishTask } from "../../scripts/request.js";
+
 let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE5OSwiaWF0IjoxNjc4OTY1MDM3fQ.d73JwvrK89Eyj2VLJfnzxF_YyrTItzwWVvqmpHAEp6k";
-let a = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-};
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE5OSwiaWF0IjoxNjc5MDA5MTE4fQ.iJQ7BT2pIMwWLDFvTHUa76HET6ZYa78dMp0mkzfqbAk";
+
 const TaskCard = ({ task }) => {
-  console.log(task);
+  const [taskDone, setTaskDone] = useState(task.done);
+
+  const taskMark = ({ target }) => {
+    if (task.done) {
+      unaccomplishTask(target.id, token)
+        .then((res) => setTaskDone((state) => !state))
+        .catch((res) => alert("deu errado"));
+    } else {
+      accomplishTask(target.id, token)
+        .then((res) => setTaskDone((state) => !state))
+        .catch((res) => alert("deu errado"));
+    }
+  };
+
   return (
     <TaskCardStyle>
       <TaskCardInfo>
@@ -51,44 +33,7 @@ const TaskCard = ({ task }) => {
           Seu recorde: {task.highestSequence} dia{task.highestSequence > 0 && "s"}
         </p>
       </TaskCardInfo>
-      <img
-        id={task.id}
-        src={task.done ? checked : uncheck}
-        alt="check icon"
-        onClick={({ target }) => {
-          if (task.done) {
-            console.log("entrou no if");
-            axios
-              .post(
-                `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${target.id}/uncheck`,
-                {},
-                a
-              )
-              .then((res) => {
-                console.log("deu certo");
-              })
-              .catch((res) => {
-                alert("deu errado");
-              });
-          } else {
-            console.log("entrou no else");
-            axios
-              .post(
-                `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${target.id}/check`,
-                {},
-                a
-              )
-              .then((res) => {
-                console.log("deu certo");
-              })
-              .catch((res) => {
-                alert("deu errado");
-              });
-          }
-          task.done = !task.done;
-          target.src = task.done ? uncheck : checked;
-        }}
-      />
+      <img id={task.id} src={taskDone ? checked : uncheck} alt="check icon" onClick={taskMark} />
     </TaskCardStyle>
   );
 };

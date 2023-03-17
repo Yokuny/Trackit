@@ -11,16 +11,14 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const page = useNavigate();
+
   return (
     <>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           connect(user(email, password), token)
-            .then((res) => {
-              console.log(res.data);
-              page("/hoje");
-            })
+            .then((res) => page("/hoje"))
             .catch((err) => alert("Erro ao logar"));
         }}>
         <input
