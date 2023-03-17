@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../../scripts/context-data.js";
 import uncheck from "../../assets/uncheck.svg";
 import checked from "../../assets/checked.svg";
 import { TaskCardStyle, TaskCardInfo } from "./style/TaskCardStyle";
 import { accomplishTask, unaccomplishTask } from "../../scripts/request.js";
 
-let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE5OSwiaWF0IjoxNjc5MDA5MTE4fQ.iJQ7BT2pIMwWLDFvTHUa76HET6ZYa78dMp0mkzfqbAk";
-
 const TaskCard = ({ task }) => {
+  const { token } = useContext(UserContext);
   const [taskDone, setTaskDone] = useState(task.done);
 
   const taskMark = ({ target }) => {

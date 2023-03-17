@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../scripts/context-data.js";
 import { dailyHabit } from "../../scripts/request.js";
 import { week, day } from "../../scripts/body-structure.js";
 
@@ -8,16 +9,15 @@ import Header from "../Header.js";
 import Footer from "../Footer.js";
 import TaskCard from "./TaskCard.js";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE5OSwiaWF0IjoxNjc4OTY1MDM3fQ.d73JwvrK89Eyj2VLJfnzxF_YyrTItzwWVvqmpHAEp6k";
-
 const Today = () => {
+  const { token } = useContext(UserContext);
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
     dailyHabit(token)
       .then(({ data }) => setTasks(data))
       .catch((error) => alert("errou ao requisitar daily habit"));
   }, []);
+
   return (
     <ScreenSize>
       <Header />

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ScreenSize from "../ScreenSize.js";
 import Header from "../Header.js";
 import Footer from "../Footer.js";
@@ -6,11 +6,10 @@ import NewHabit from "./NewHabit.js";
 import TaskList from "./TaskList.js";
 import { AddHabit, AddHeader, HabitCards } from "./style/HabitCards.js";
 import { taskList } from "../../scripts/request";
-
-let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE5OSwiaWF0IjoxNjc4OTY1MDM3fQ.d73JwvrK89Eyj2VLJfnzxF_YyrTItzwWVvqmpHAEp6k";
+import { UserContext } from "../../scripts/context-data.js";
 
 const Habits = () => {
+  const { token } = useContext(UserContext);
   const [newHabit, setNewHabit] = useState(false);
   const [tasks, setTask] = useState([]);
   useEffect(() => {

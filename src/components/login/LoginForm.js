@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Rings } from "react-loader-spinner";
+// import { Rings } from "react-loader-spinner";
 import { user } from "../../scripts/body-structure.js";
 import { connect } from "../../scripts/request.js";
-
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE5OSwiaWF0IjoxNjc4ODQ5NTY3fQ.v9PHaz77MABYdleMhkushICSnDy8VqZ_-9cnVRa896w";
+import { UserContext } from "../../scripts/context-data.js";
 
 const LoginForm = () => {
+  const { setToken } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const page = useNavigate();
@@ -17,8 +16,13 @@ const LoginForm = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          connect(user(email, password), token)
-            .then((res) => page("/hoje"))
+          connect(user(email, password))
+            .then(({ data }) => {
+              setToken(data.token);
+              // const img = data.image;
+              console.log(data);
+              page("/hoje");
+            })
             .catch((err) => alert("Erro ao logar"));
         }}>
         <input

@@ -15,7 +15,7 @@ const RegisterForm = () => {
         onSubmit={(e) => {
           e.preventDefault();
           register(new_user(email, password, name, picture))
-            .then((res) => page("/"))
+            .then(({ data }) => page("/"))
             .catch((err) => alert("Erro ao cadastrar"));
         }}>
         <input

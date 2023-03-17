@@ -1,12 +1,12 @@
 import Weekdays from "./Weekdays.js";
 import TaskListStyle from "./style/TaskListStyle.js";
-import TrashCan from "../../assets//trash-can.svg";
+import TrashCan from "../../assets/trash-can.svg";
 import { deleteHabit } from "../../scripts/request.js";
-
-let token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE5OSwiaWF0IjoxNjc4OTY1MDM3fQ.d73JwvrK89Eyj2VLJfnzxF_YyrTItzwWVvqmpHAEp6k";
+import { useContext } from "react";
+import { UserContext } from "../../scripts/context-data.js";
 
 const TaskList = ({ task }) => {
+  const { token } = useContext(UserContext);
   const newWeek = () => {
     function selectfalse(day) {
       return { day, select: false };
