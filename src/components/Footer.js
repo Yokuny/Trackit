@@ -29,10 +29,16 @@ const StyledLink = styled(Link)`
 `;
 const Footer = () => {
   return (
-    <FooterStyle>
-      <StyledLink to="/habitos">Hábitos</StyledLink>
-      <StyledLink to="/hoje">Hoje</StyledLink>
-      <StyledLink to="/historico">Histórico</StyledLink>
+    <FooterStyle data-test="menu">
+      <StyledLink to="/habitos" data-test="habit-link">
+        Hábitos
+      </StyledLink>
+      <StyledLink to="/hoje" data-test="today-link">
+        Hoje
+      </StyledLink>
+      <StyledLink to="/historico" data-test="history-link">
+        Histórico
+      </StyledLink>
     </FooterStyle>
   );
 };

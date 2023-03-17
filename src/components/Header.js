@@ -27,7 +27,7 @@ const Header = () => {
   const props =
     "https://th.bing.com/th/id/R.45f4da7079c3b2ce428ad0e155c32c13?rik=j9aZ3yM1Ql03rA&pid=ImgRaw&r=0";
   return (
-    <HeaderStyle>
+    <HeaderStyle data-test="header">
       <img src={logo} alt="logo" />
       <img src={props} alt="profile" />
     </HeaderStyle>

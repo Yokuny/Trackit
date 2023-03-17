@@ -20,7 +20,7 @@ const TaskList = ({ task }) => {
   });
 
   return (
-    <TaskListStyle>
+    <TaskListStyle data-test="habit-container">
       <img
         src={TrashCan}
         alt="remove"
@@ -32,8 +32,9 @@ const TaskList = ({ task }) => {
             })
             .catch((res) => alert("nao foi"));
         }}
+        data-test="habit-delete-btn"
       />
-      <p>{task.name}</p>
+      <p data-test="habit-name">{task.name}</p>
       <Weekdays days={weekDays} />
     </TaskListStyle>
   );

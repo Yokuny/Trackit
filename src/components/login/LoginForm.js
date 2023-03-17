@@ -34,6 +34,7 @@ const LoginForm = () => {
           placeholder="email"
           required
           minLength={8}
+          data-test="email-input"
         />
         <input
           type="password"
@@ -48,11 +49,14 @@ const LoginForm = () => {
           placeholder="senha"
           required
           minLength={6}
+          data-test="password-input"
         />
-        <button type="submit">Entrar</button>
+        <button type="submit" data-test="login-btn">
+          Entrar
+        </button>
       </form>
       <Link to="/cadastro">
-        <p>Não tem uma conta? Cadastre-se!</p>
+        <p data-test="signup-link">Não tem uma conta? Cadastre-se!</p>
       </Link>
     </>
   );

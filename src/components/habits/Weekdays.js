@@ -19,7 +19,8 @@ const Weekdays = ({ days, markDay }) => {
           }}
           key={`${day.day}${index}`}
           id={`${day.day}${index}`}
-          checked={day.select}>
+          checked={day.select}
+          data-test="habit-day">
           {day.day}
         </Checkbox>
       ))}

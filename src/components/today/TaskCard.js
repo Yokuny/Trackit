@@ -23,17 +23,23 @@ const TaskCard = ({ task }) => {
   };
 
   return (
-    <TaskCardStyle>
+    <TaskCardStyle data-test="today-habit-container">
       <TaskCardInfo>
-        <p>{task.name}</p>
-        <p>
+        <p data-test="today-habit-name">{task.name}</p>
+        <p data-test="today-habit-sequence">
           Sequência atual: {task.currentSequence} dia{task.currentSequence > 0 && "s"}
         </p>
-        <p>
+        <p data-test="today-habit-record">
           Seu recorde: {task.highestSequence} dia{task.highestSequence > 0 && "s"}
         </p>
       </TaskCardInfo>
-      <img id={task.id} src={taskDone ? checked : uncheck} alt="check icon" onClick={taskMark} />
+      <img
+        id={task.id}
+        src={taskDone ? checked : uncheck}
+        alt="check icon"
+        onClick={taskMark}
+        data-test="today-habit-check-btn"
+      />
     </TaskCardStyle>
   );
 };

@@ -24,7 +24,9 @@ const Habits = () => {
       <AddHabit>
         <AddHeader>
           <p>Meus hábitos</p>
-          <button onClick={() => setNewHabit((actual) => !actual)}>+</button>
+          <button onClick={() => setNewHabit((actual) => !actual)} data-test="habit-create-btn">
+            +
+          </button>
         </AddHeader>
         {newHabit ? <NewHabit close={setNewHabit} /> : <></>}
       </AddHabit>
