@@ -1,30 +1,24 @@
-import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-const objTemplate = (email, password) => ({ email, password });
-let token =
+import { Rings } from "react-loader-spinner";
+import { user } from "../../scripts/body-structure.js";
+import { connect } from "../../scripts/request.js";
+
+const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODE5OSwiaWF0IjoxNjc4ODQ5NTY3fQ.v9PHaz77MABYdleMhkushICSnDy8VqZ_-9cnVRa896w";
-let b = {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-};
+
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const page = useNavigate();
+
   return (
     <>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          let a = objTemplate(email, password);
-          axios
-            .post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", a, b)
-            .then((res) => {
-              console.log(res.data);
-              page("/hoje");
-            })
+          connect(user(email, password), token)
+            .then((res) => page("/hoje"))
             .catch((err) => alert("Erro ao logar"));
         }}>
         <input
