@@ -1,5 +1,5 @@
 import { CheckboxContainer, Checkbox } from "./style/WeekDaysStyle";
-const Weekdays = ({ days, markDay }) => {
+const Weekdays = ({ days, markDay, disable }) => {
   return (
     <CheckboxContainer>
       {days.map((day, index) => (
@@ -20,6 +20,7 @@ const Weekdays = ({ days, markDay }) => {
           key={`${day.day}${index}`}
           id={`${day.day}${index}`}
           checked={day.select}
+          disabled={disable}
           data-test="habit-day">
           {day.day}
         </Checkbox>

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
-// import { Rings } from "react-loader-spinner";
 import { user } from "../../scripts/body-structure.js";
 import { connect } from "../../scripts/request.js";
 import { UserContext } from "../../scripts/context-data.js";
@@ -9,6 +9,7 @@ const LoginForm = () => {
   const { setToken } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const page = useNavigate();
 
   return (
@@ -16,6 +17,7 @@ const LoginForm = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          setLoading(true);
           connect(user(email, password))
             .then(({ data }) => {
               setToken(data.token);
@@ -23,7 +25,13 @@ const LoginForm = () => {
               console.log(data);
               page("/hoje");
             })
-            .catch((err) => alert("Erro ao logar"));
+            .catch((err) => {
+              setLoading(false);
+              alert("Erro ao logar");
+            })
+            .finally(() => {
+              setLoading(false);
+            });
         }}>
         <input
           type="email"
@@ -38,6 +46,7 @@ const LoginForm = () => {
           placeholder="email"
           required
           minLength={8}
+          disabled={loading}
           data-test="email-input"
         />
         <input
@@ -53,10 +62,22 @@ const LoginForm = () => {
           placeholder="senha"
           required
           minLength={6}
+          disabled={loading}
           data-test="password-input"
         />
-        <button type="submit" data-test="login-btn">
-          Entrar
+        <button disabled={false} type="submit" data-test="login-btn">
+          {loading ? (
+            <ThreeDots
+              height="80"
+              width="80"
+              radius="9"
+              color="#fff"
+              ariaLabel="three-dots-loading"
+              visible={true}
+            />
+          ) : (
+            "Entrar"
+          )}
         </button>
       </form>
       <Link to="/cadastro">

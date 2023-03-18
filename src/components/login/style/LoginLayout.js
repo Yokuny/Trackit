@@ -20,9 +20,21 @@ const LoginLayout = styled.div`
     padding: 11px;
     border: 1px solid #d5d5d5;
     background: #ffffff;
+    color: #4b4b4b;
+  }
+  form input::placeholder {
     color: #dbdbdb;
   }
+  form input:disabled {
+    background: #f2f2f2;
+    color: #afafaf;
+    cursor: not-allowed;
+  }
   form button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border: 0px solid transparent;
     background: #52b6ff;
     font-family: "Lexend Deca", sans-serif;
@@ -31,6 +43,10 @@ const LoginLayout = styled.div`
   }
   form button:hover {
     background: #33aaf0;
+  }
+  form button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
   p {
     margin-top: 25px;

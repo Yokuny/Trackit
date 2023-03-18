@@ -1,5 +1,6 @@
 import Weekdays from "./Weekdays.js";
 import AddNewHabit from "./style/AddNewHabit.js";
+import { ThreeDots } from "react-loader-spinner";
 import { useState, useContext } from "react";
 import { UserContext } from "../../scripts/context-data.js";
 import { new_habit } from "../../scripts/body-structure.js";
@@ -15,18 +16,21 @@ const newWeek = () => {
 
 const NewHabit = ({ close }) => {
   const { token } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   const [weekDay, setWeekDay] = useState(newWeek());
   const [task, setTask] = useState("");
   return (
     <AddNewHabit
       onSubmit={(e) => {
         e.preventDefault();
+        setLoading(true);
         postHabit(new_habit(task, weekDay), token)
           .then((res) => {
-            alert("foi");
+            setLoading(false);
             close((actual) => !actual);
           })
-          .catch((res) => alert("nao foi"));
+          .catch((res) => alert("nao foi"))
+          .finally(() => setLoading(false));
       }}
       data-test="habit-create-container">
       <input
@@ -41,14 +45,33 @@ const NewHabit = ({ close }) => {
           }
           setTask(target.value);
         }}
+        disabled={loading}
         data-test="habit-name-input"
       />
-      <Weekdays days={weekDay} markDay={setWeekDay} />
+      <Weekdays days={weekDay} markDay={setWeekDay} disable={loading} />
       <section>
-        <p onClick={() => close((actual) => !actual)} data-test="habit-create-cancel-btn">
+        <button
+          onClick={() => close((actual) => !actual)}
+          disabled={loading}
+          data-test="habit-create-cancel-btn">
           Cancel
-        </p>
-        <button data-test="habit-create-save-btn">Salvar</button>
+        </button>
+        <button data-test="habit-create-save-btn" disabled={loading}>
+          {loading ? (
+            <ThreeDots
+              height="10"
+              width="80"
+              radius="9"
+              color="#fff"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClassName=""
+              visible={true}
+            />
+          ) : (
+            "Salvar"
+          )}
+        </button>
       </section>
     </AddNewHabit>
   );

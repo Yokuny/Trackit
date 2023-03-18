@@ -18,13 +18,17 @@ const AddNewHabit = styled.form`
     color: #dbdbdb;
     margin-bottom: 8px;
   }
+  input:disabled {
+    background: #f2f2f2;
+    cursor: not-allowed;
+  }
   section {
     margin-top: 29px;
     width: 303px;
     display: flex;
     justify-content: end;
   }
-  section p {
+  section button:first-child {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,9 +39,12 @@ const AddNewHabit = styled.form`
     text-align: center;
     color: #52b6ff;
     cursor: pointer;
+    background-color: transparent;
   }
-  section p:hover {
+  section p:hover,
+  section p:disabled {
     opacity: 0.7;
+    cursor: not-allowed;
   }
   section button {
     width: 84px;
@@ -46,14 +53,19 @@ const AddNewHabit = styled.form`
     border-radius: 5px;
     background: #52b6ff;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     font-family: "Lexend Deca", sans-serif;
     font-size: 16px;
-    text-align: center;
     color: #ffffff;
     cursor: pointer;
   }
-  section button:hover {
+  section button:hover,
+  section button:disabled {
     opacity: 0.7;
+    cursor: not-allowed;
   }
 `;
 export default AddNewHabit;

@@ -19,4 +19,5 @@ export const Checkbox = styled.div`
   font-size: 20px;
   color: ${(props) => (props.checked ? "#FFFFFF" : "#DBDBDB")};
   cursor: pointer;
+  ${({ disabled }) => disabled && { opacity: 0.7, cursor: "not-allowed" }}
 `;
