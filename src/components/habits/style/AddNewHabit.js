@@ -15,10 +15,14 @@ const AddNewHabit = styled.form`
     border-radius: 5px;
     background: #ffffff;
     font-size: 20px;
-    color: #dbdbdb;
     margin-bottom: 8px;
+    color: #4b4b4b;
+  }
+  input::placeholder {
+    color: #dbdbdb;
   }
   input:disabled {
+    color: #dbdbdb;
     background: #f2f2f2;
     cursor: not-allowed;
   }
@@ -41,7 +45,9 @@ const AddNewHabit = styled.form`
     cursor: pointer;
     background-color: transparent;
   }
-  section p:hover,
+  section p:hover {
+    opacity: 0.7;
+  }
   section p:disabled {
     opacity: 0.7;
     cursor: not-allowed;
@@ -62,7 +68,9 @@ const AddNewHabit = styled.form`
     color: #ffffff;
     cursor: pointer;
   }
-  section button:hover,
+  section button:hover {
+    opacity: 0.7;
+  }
   section button:disabled {
     opacity: 0.7;
     cursor: not-allowed;
