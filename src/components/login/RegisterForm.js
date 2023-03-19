@@ -20,7 +20,6 @@ const RegisterForm = () => {
           register(new_user(email, password, name, picture))
             .then(({ data }) => {
               setLoading(false);
-
               page("/");
             })
             .catch((err) => alert("Erro ao cadastrar"))
@@ -108,7 +107,7 @@ const RegisterForm = () => {
         </button>
       </form>
       <Link to="/">
-        <p atributo data-test="login-link">
+        <p disabled={loading} data-test="login-link">
           Já tem uma conta? Faça login!
         </p>
       </Link>

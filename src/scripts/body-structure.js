@@ -32,3 +32,4 @@ export const new_habit = (name, week) => {
   });
   return { name, days };
 };
+

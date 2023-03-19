@@ -8,19 +8,23 @@ import { accomplishTask, unaccomplishTask } from "../../scripts/request.js";
 const TaskCard = ({ task }) => {
   const { token } = useContext(UserContext);
   const [taskDone, setTaskDone] = useState(task.done);
-
   const taskMark = ({ target }) => {
     if (task.done) {
       unaccomplishTask(target.id, token)
-        .then((res) => setTaskDone((state) => !state))
-        .catch((res) => alert("deu errado"));
+        .then(setTaskDone((state) => !state))
+        .catch((res) => {
+          setTaskDone((state) => !state);
+          alert("deu errado");
+        });
     } else {
       accomplishTask(target.id, token)
-        .then((res) => setTaskDone((state) => !state))
-        .catch((res) => alert("deu errado"));
+        .then(setTaskDone((state) => !state))
+        .catch((res) => {
+          setTaskDone((state) => !state);
+          alert("deu errado");
+        });
     }
   };
-
   return (
     <TaskCardStyle data-test="today-habit-container">
       <TaskCardInfo>
