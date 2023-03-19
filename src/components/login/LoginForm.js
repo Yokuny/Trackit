@@ -6,7 +6,7 @@ import { connect } from "../../scripts/request.js";
 import { UserContext } from "../../scripts/context-data.js";
 
 const LoginForm = () => {
-  const { setToken } = useContext(UserContext);
+  const { setToken, setUserImg } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -21,8 +21,7 @@ const LoginForm = () => {
           connect(user(email, password))
             .then(({ data }) => {
               setToken(data.token);
-              // const img = data.image;
-              console.log(data);
+              setUserImg(data.image);
               page("/hoje");
             })
             .catch((err) => {
@@ -65,7 +64,7 @@ const LoginForm = () => {
           disabled={loading}
           data-test="password-input"
         />
-        <button disabled={false} type="submit" data-test="login-btn">
+        <button disabled={loading} type="submit" data-test="login-btn">
           {loading ? (
             <ThreeDots
               height="80"
@@ -81,7 +80,9 @@ const LoginForm = () => {
         </button>
       </form>
       <Link to="/cadastro">
-        <p data-test="signup-link">Não tem uma conta? Cadastre-se!</p>
+        <p disabled={loading} data-test="signup-link">
+          Não tem uma conta? Cadastre-se!
+        </p>
       </Link>
     </>
   );

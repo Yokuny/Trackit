@@ -44,13 +44,10 @@ const AddNewHabit = styled.form`
     color: #52b6ff;
     cursor: pointer;
     background-color: transparent;
+    ${({ disabled }) => disabled && { opacity: 0.7, cursor: "not-allowed" }}
   }
   section p:hover {
     opacity: 0.7;
-  }
-  section p:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
   }
   section button {
     width: 84px;

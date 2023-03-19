@@ -49,15 +49,16 @@ const LoginLayout = styled.div`
     cursor: not-allowed;
   }
   p {
+    ${({ disabled }) => disabled && { opacity: 0.7, cursor: "not-allowed" }}
     margin-top: 25px;
     font-size: 14px;
     text-align: center;
     text-decoration: underline;
     color: #52b6ff;
     cursor: pointer;
-  }
-  p:hover {
-    color: #33aaf0;
+    :hover {
+      color: #33aaf0;
+    }
   }
 `;
 export default LoginLayout;
