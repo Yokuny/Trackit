@@ -10,8 +10,11 @@ import TaskCard from "./TaskCard.js";
 
 const Today = () => {
   const { token, progress, setProgress } = useContext(UserContext);
+  const [textColor, setTextColor] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [itemChange, setItemChange] = useState(false);
   useEffect(() => {
+    setItemChange(false);
     let taskAmount = 0;
     let taskCompleted = 0;
     dailyHabit(token)
@@ -23,20 +26,23 @@ const Today = () => {
         setProgress((taskCompleted / taskAmount) * 100);
         setTasks(data);
       })
-      .catch((error) => alert("errou ao requisitar daily habit"));
-  });
+      .catch((error) => console.log(error));
+  }, [itemChange]);
   return (
     <ScreenSize>
       <Header />
-      <TodayStyle>
+      <TodayStyle color={textColor && progress > 0 ? "#8FC549" : "#666666"}>
         <p data-test="today">
           {week()}, {day()}
         </p>
         <p data-test="today-counter">
-          {progress > 0 ? `${progress}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
+          {progress > 0 ? `${progress.toFixed(0)}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}
         </p>
       </TodayStyle>
-      {tasks.length > 0 && tasks.map((task) => <TaskCard key={task.id} task={task} />)}
+      {tasks.length > 0 &&
+        tasks.map((task) => (
+          <TaskCard key={task.id} task={task} setTextColor={setTextColor} itemChange={setItemChange} />
+        ))}
       <Footer />
     </ScreenSize>
   );

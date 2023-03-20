@@ -27,4 +27,10 @@ export const TaskCardInfo = styled.div`
     font-size: 13px;
     line-height: 16px;
   }
+  span {
+    color: ${({ taskColor }) => taskColor};
+  }
+  span:last-child {
+    color: ${({ hightScore }) => hightScore};
+  }
 `;

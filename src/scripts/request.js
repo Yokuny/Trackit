@@ -25,9 +25,13 @@ export const postHabit = async (data, token) => {
 export const deleteHabit = async (id, token) => {
   await axios.delete(`${baseUrl}habits/${id}`, Authorization(token));
 };
-export const accomplishTask = async (id, token) => {
-  return await axios.post(`${baseUrl}habits/${id}/check`, {}, Authorization(token));
+export const accomplishTask = async (id, token, cancel) => {
+  return await axios.post(`${baseUrl}habits/${id}/check`, {}, Authorization(token), {
+    cancelToken: cancel.token,
+  });
 };
-export const unaccomplishTask = async (id, token) => {
-  return await axios.post(`${baseUrl}habits/${id}/uncheck`, {}, Authorization(token));
+export const unaccomplishTask = async (id, token, cancel) => {
+  return await axios.post(`${baseUrl}habits/${id}/uncheck`, {}, Authorization(token), {
+    cancelToken: cancel.token,
+  });
 };

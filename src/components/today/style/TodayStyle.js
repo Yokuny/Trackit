@@ -10,7 +10,7 @@ const TodayInfo = styled.div`
   p:last-child {
     font-size: 18px;
     line-height: 22px;
-    color: #bababa;
+    color: ${({ color }) => color};
   }
 `;
 export default TodayInfo;

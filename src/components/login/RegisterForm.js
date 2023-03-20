@@ -22,7 +22,7 @@ const RegisterForm = () => {
               setLoading(false);
               page("/");
             })
-            .catch((err) => alert("Erro ao cadastrar"))
+            .catch((err) => alert(err.response.data.message))
             .finally(() => setLoading(false));
         }}>
         <input

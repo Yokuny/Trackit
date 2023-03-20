@@ -12,11 +12,15 @@ const Habits = () => {
   const { token } = useContext(UserContext);
   const [newHabit, setNewHabit] = useState(false);
   const [tasks, setTask] = useState([]);
+  const [inputTask, setInputTask] = useState("");
+  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     taskList(token)
       .then((res) => setTask(res.data))
-      .catch((res) => alert("nao foi"));
-  }, []);
+      .catch((err) => alert(err.response.data.message));
+    setRefresh(false);
+  }, [token, refresh]);
+
   return (
     <ScreenSize>
       <Header />
@@ -27,11 +31,20 @@ const Habits = () => {
             +
           </button>
         </AddHeader>
-        {newHabit ? <NewHabit close={setNewHabit} /> : <></>}
+        {newHabit ? (
+          <NewHabit
+            close={setNewHabit}
+            refresh={setRefresh}
+            inputTask={inputTask}
+            setInputTask={setInputTask}
+          />
+        ) : (
+          <></>
+        )}
       </AddHabit>
       <HabitCards>
         {tasks.length > 0 ? (
-          tasks.map((task) => <TaskList key={task.id} task={task} />)
+          tasks.map((task) => <TaskList key={task.id} task={task} refresh={setRefresh} />)
         ) : (
           <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
         )}

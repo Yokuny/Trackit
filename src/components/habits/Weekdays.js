@@ -5,6 +5,7 @@ const Weekdays = ({ days, markDay, disable }) => {
       {days.map((day, index) => (
         <Checkbox
           onClick={({ target }) => {
+            if (disable) return;
             if (markDay) {
               markDay((prev) =>
                 prev.map((day, index) => {

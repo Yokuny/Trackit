@@ -14,36 +14,37 @@ const newWeek = () => {
   return week.map((day) => selectfalse(day));
 };
 
-const NewHabit = ({ close }) => {
+const NewHabit = ({ close, refresh, inputTask, setInputTask }) => {
   const { token } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [weekDay, setWeekDay] = useState(newWeek());
-  const [task, setTask] = useState("");
   return (
     <AddNewHabit
       onSubmit={(e) => {
         e.preventDefault();
         setLoading(true);
-        postHabit(new_habit(task, weekDay), token)
+        postHabit(new_habit(inputTask, weekDay), token)
           .then((res) => {
             setLoading(false);
+            setInputTask("");
+            refresh(true);
             close((actual) => !actual);
           })
-          .catch((res) => alert("nao foi"))
+          .catch((err) => err.response.data.message)
           .finally(() => setLoading(false));
       }}
       data-test="habit-create-container">
       <input
         type="text"
         placeholder="nome do hábito"
-        value={task}
+        value={inputTask}
         onChange={({ target }) => {
           if (target.value.length > 5) {
             target.style = "border-bottom: 2px solid #52b6ff";
           } else {
             target.style = "border-bottom: 2px solid crimson";
           }
-          setTask(target.value);
+          setInputTask(target.value);
         }}
         disabled={loading}
         data-test="habit-name-input"

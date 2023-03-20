@@ -26,7 +26,7 @@ const LoginForm = () => {
             })
             .catch((err) => {
               setLoading(false);
-              alert("Erro ao logar");
+              alert(err.response.data.message);
             })
             .finally(() => {
               setLoading(false);

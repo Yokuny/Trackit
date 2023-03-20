@@ -4,8 +4,7 @@ import TrashCan from "../../assets/trash-can.svg";
 import { deleteHabit } from "../../scripts/request.js";
 import { useContext } from "react";
 import { UserContext } from "../../scripts/context-data.js";
-
-const TaskList = ({ task }) => {
+const TaskList = ({ task, refresh }) => {
   const { token } = useContext(UserContext);
   const newWeek = () => {
     function selectfalse(day) {
@@ -26,11 +25,13 @@ const TaskList = ({ task }) => {
         alt="remove"
         id={task.id}
         onClick={({ target }) => {
-          deleteHabit(target.id, token)
-            .then((res) => {
-              alert("deletou");
-            })
-            .catch((res) => alert("nao foi"));
+          if (window.confirm("Deseja excluir este hábito?")) {
+            deleteHabit(target.id, token)
+              .then(() => {
+                refresh(true);
+              })
+              .catch((res) => alert("Não foi possível excluir o hábito"));
+          }
         }}
         data-test="habit-delete-btn"
       />
