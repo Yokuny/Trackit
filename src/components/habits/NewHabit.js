@@ -42,6 +42,7 @@ const NewHabit = ({ close, refresh, inputTask, setInputTask }) => {
           if (target.value.length > 5) {
             target.style = "border-bottom: 2px solid #52b6ff";
           } else {
+            alert("O nome do hábito deve ter no mínimo 6 caracteres");
             target.style = "border-bottom: 2px solid crimson";
           }
           setInputTask(target.value);
