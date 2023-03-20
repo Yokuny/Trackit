@@ -11,7 +11,13 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const page = useNavigate();
-
+  const getToken = localStorage.getItem("token");
+  const getImg = localStorage.getItem("img");
+  if (getToken && getImg) {
+    setToken(getToken);
+    setUserImg(getImg);
+    page("/hoje");
+  }
   return (
     <>
       <form
@@ -21,7 +27,9 @@ const LoginForm = () => {
           connect(user(email, password))
             .then(({ data }) => {
               setToken(data.token);
+              localStorage.setItem("token", data.token);
               setUserImg(data.image);
+              localStorage.setItem("img", data.image);
               page("/hoje");
             })
             .catch((err) => {
